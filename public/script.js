@@ -6,34 +6,39 @@ async function getUsers() {
     try {
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         const data = await response.json();
+
         console.log(data);
+
         data.forEach(element => {
+            let id = element.id;
+            let name = element.name;
+            let userName = element.username;
+            let userEmail = element.email;
+
             users.appendChild(document.createElement("div"));
-            let user = users.lastChild;
-            user.classList.add("card");
-            user.appendChild(document.createElement("img"));
-            let avatar = user.firstChild;
+            let currentUser = users.lastChild;
+            currentUser.classList.add("card");
+            currentUser.appendChild(document.createElement("img"));
+            let avatar = currentUser.firstChild;
             avatar.classList.add("user-avatar");
-            avatar.src = ""
+            avatar.src = `https://robohash.org/wewillruketheworld${id}.png?set=set4`;
             avatar.alt = "avatar";
-            user.appendChild(document.createElement("div"));
-            user.lastChild.classList.add("user-info");
-            user.lastChild.appendChild(document.createElement("h4"));
-            let userName = user.querySelector("h4");
-            userName.innerText = element.name;
-            user.lastChild.appendChild(document.createElement("h3"));
+            currentUser.appendChild(document.createElement("div"));
+            currentUser.lastChild.classList.add("user-info");
 
-            user.lastChild.appendChild(document.createElement("p"));
+            currentUser.lastChild.appendChild(document.createElement("h4"));
+            let currentUserName = currentUser.querySelector("h4");
+            currentUserName.innerText = name;
 
+            currentUser.lastChild.appendChild(document.createElement("h3"));
+            let currentUseruserNickName = currentUser.querySelector("h3");
+            currentUseruserNickName.innerText = userName;
 
-
-
-
-
-
-
-
+            currentUser.lastChild.appendChild(document.createElement("p"));
+            let currentUserEmail = currentUser.querySelector("p");
+            currentUserEmail.innerText = userEmail;
         });
+
 
 
 
